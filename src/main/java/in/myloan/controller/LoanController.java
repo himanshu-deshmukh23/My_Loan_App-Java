@@ -43,13 +43,13 @@ public class LoanController {
 
 	@GetMapping("/")
 	public String home() {
-		return "home.html";
+		return "home";
 	}
 
 	@RequestMapping("/addUser")
 	public String addUser(@ModelAttribute User user) {
 		urepo.save(user);
-		return "login.jsp";
+		return "login";
 	}
 
 	@GetMapping("/adminProfile")
@@ -57,7 +57,7 @@ public class LoanController {
 		ModelAndView mv = new ModelAndView();
 		List<Loan> loans = loanRepository.findAll();
 		mv.addObject("loans", loans);
-		mv.setViewName("adminProfile.jsp");
+		mv.setViewName("adminProfile");
 		return mv;
 	}
 
@@ -70,7 +70,7 @@ public class LoanController {
 		mv.addObject("user", user);
 		mv.addObject("loans", loans);
 		mv.addObject("repayments", repayments);
-		mv.setViewName("userProfile.jsp");
+		mv.setViewName("userProfile");
 		return mv;
 	}
 
@@ -88,7 +88,7 @@ public class LoanController {
 			return userProfile(user.getUserId());
 		} else {
 			System.err.println("credential does not match!");
-			mv.setViewName("home.html");
+			mv.setViewName("home");
 			return mv;
 		}
 	}
